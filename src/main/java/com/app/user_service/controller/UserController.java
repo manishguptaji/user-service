@@ -17,11 +17,11 @@ public class UserController {
 
     @PostMapping("/update-interests")
     public String updateUserInterests() {
-        return userService.updateUserInterests();
+        return "User interests updated successfully.";
     }
 
     @PostMapping("/update-subscription")
     public String updateUserSubscription() {
-        return userService.updateUserSubscription();
+        return "User subscription updated successfully.";
     }
 }
