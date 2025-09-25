@@ -17,9 +17,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())  // new way to disable CSRF
+        http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user/**").permitAll()  // allow registration without login
+                        .requestMatchers("/user/**").permitAll()
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
                         .anyRequest().authenticated()  // protect other endpoints
                 )
                 .httpBasic(hBasic -> hBasic.disable());  // basic auth for other endpoints
