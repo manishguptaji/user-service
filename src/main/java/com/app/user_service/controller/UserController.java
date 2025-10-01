@@ -1,12 +1,18 @@
 package com.app.user_service.controller;
 
+import com.app.user_service.entity.User;
 import com.app.user_service.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
+import com.app.user_service.util.ApiResponse;
+import com.app.user_service.util.ResponseBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/update")
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -15,13 +21,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/update-interests")
-    public String updateUserInterests() {
-        return "User interests updated successfully.";
+    @GetMapping("/all")
+    public ResponseEntity<ApiResponse<List<User>>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseBuilder.success(users);
     }
 
-    @PostMapping("/update-subscription")
-    public String updateUserSubscription() {
-        return "User subscription updated successfully.";
-    }
 }
