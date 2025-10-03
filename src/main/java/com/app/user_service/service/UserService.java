@@ -63,5 +63,9 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    public List<User> getActiveUsersWithRoleUser() {
+        return userRepository.findActiveUsersWithRoleUser();
+    }
 }
 

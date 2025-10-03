@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<User>>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
+        List<User> users = userService.getActiveUsersWithRoleUser();
         return ResponseBuilder.success(users);
     }
 
